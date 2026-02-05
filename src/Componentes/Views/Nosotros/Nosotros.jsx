@@ -15,7 +15,7 @@ const integrantes = [
     nombre: "Romina Danelutto",
     rol: "Scrum Master",
     descripcion:
-      "Construyo la infraestructura técnica sólida que soporta cada función, siempre pensando en cómo cada línea de código mejora la experiencia global.",
+      "Coordino al equipo, organizo y facilito el cumplimiento de cada sprint. Colaboro en el desarrollo de nuevas funcionalidades para mejorar la experiencia del usuario",
     github: "https://github.com/rominadanelutto",
   },
   {
@@ -23,7 +23,7 @@ const integrantes = [
     nombre: "Alvaro Morillo",
     rol: "Fullstack Developer",
     descripcion:
-      "Conecto cada pieza del proyecto, asegurando que diseño, tecnología y estrategia trabajen en armonía hacia un objetivo común.",
+      "Conecto cada pieza del proyecto, asegurando que diseño, tecnología y estrategia trabajen en armonía hacia un objetivo común. Trabajo en equipo para integrar mejoras continuas",
     github: "https://github.com/alvaro-morillo",
   },
     {
@@ -31,7 +31,7 @@ const integrantes = [
     nombre: "Miguel Zambrano",
     rol: "Fullstack Developer",
     descripcion:
-      "Conecto cada pieza del proyecto, asegurando que diseño, tecnología y estrategia trabajen en armonía hacia un objetivo común.",
+      "Participo tanto en frontend como backend, integrando componentes visuales con la lógica del sistema. Apoyo en nuevas funcionalidades y optimización general del proyecto. Aporte constante a la evolución técnica y funcional del proyecto",
     github: "https://github.com/mizambran",
   },
     {
@@ -39,7 +39,7 @@ const integrantes = [
     nombre: "Patricio Romero",
     rol: "Fullstack Developer",
     descripcion:
-      "Conecto cada pieza del proyecto, asegurando que diseño, tecnología y estrategia trabajen en armonía hacia un objetivo común.",
+      "Colaboro en el desarrollo de nuevas funcionalidades, conectando diseño y código para mejorar la experiencia del usuario. Aporte constante a la evolución técnica y funcional",
     github: "https://github.com/pato1404",
   },
 ];
@@ -52,11 +52,6 @@ const integrantes = [
       <div className="grid-integrantes">
         {integrantes.map((persona) => (
           <div className="tarjeta-integrante" key={persona.id}>
-            <img
-              src={persona.foto}
-              alt={persona.nombre}
-              className="foto-integrante"
-            />
 
             <h3>{persona.nombre}</h3>
             <p className="rol-integrante">{persona.rol}</p>
