@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom'; 
 import { useCarrito } from '../../../../../Context/ContextoCarrito';
+import { useFavoritos } from '../../../../../Context/ContextoFavoritos';
 import { 
   crearProductoData, 
   generarIdCarrito,
@@ -29,9 +30,17 @@ const CardProducto = ({
 
   const navigate = useNavigate(); 
   const { agregarAlCarrito } = useCarrito();
+  const { toggleFavorito, esFavorito } = useFavoritos();
+
+  const isFavorito = esFavorito(id);
 
   // Crear objeto producto normalizado
   const productoBase = { id, marca, modelo, año, precio, imagen, kilometros, ubicacion, descripcion, destacado, stock };
+
+  const handleFavoritoClick = (e) => {
+    e.stopPropagation();
+    toggleFavorito(id);
+  };
 
   const handleComprarClick = (e) => {
     if (e) e.stopPropagation();
@@ -72,6 +81,14 @@ const CardProducto = ({
       <div className="barra-superior-color" />
 
       <div className="contenedor-imagen-moto">
+        <button 
+          className="boton-favorito" 
+          onClick={handleFavoritoClick}
+          aria-label={isFavorito ? 'Quitar de favoritos' : 'Agregar a favoritos'}
+        >
+          {isFavorito ? '❤️' : '🤍'}
+        </button>
+
         <img 
           className="imagen-moto" 
           src={imagen} 
