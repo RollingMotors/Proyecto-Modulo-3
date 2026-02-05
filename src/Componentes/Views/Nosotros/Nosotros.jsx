@@ -4,32 +4,44 @@ import "./Nosotros.css";
 const integrantes = [
   {
     id: 1,
-    nombre: "Tomas Gomez",
-    rol: "FullStack Developer",
-    descripcion:
-      "Doy vida visual al proyecto, pero mi visión abarca todo el flujo del usuario. Cada elemento que diseño responde a una necesidad del negocio.",
-    foto: "/imagenes/integrante1.jpg",
-    github: "https://github.com/tomasgomez18",
-  },
-  {
-    id: 2,
     nombre: "Matias Lazarte",
-    rol: "FullStack Developer",
+    rol: "Lider Tecnico",
     descripcion:
       "Construyo la infraestructura técnica sólida que soporta cada función, siempre pensando en cómo cada línea de código mejora la experiencia global.",
-    foto: "/imagenes/integrante2.jpg",
     github: "https://github.com/matti434",
   },
   {
+    id: 2,
+    nombre: "Romina Danelutto",
+    rol: "Scrum Master",
+    descripcion:
+      "Construyo la infraestructura técnica sólida que soporta cada función, siempre pensando en cómo cada línea de código mejora la experiencia global.",
+    github: "https://github.com/rominadanelutto",
+  },
+  {
     id: 3,
-    nombre: "Juan Pablo Vergara",
+    nombre: "Alvaro Morillo",
     rol: "Fullstack Developer",
     descripcion:
       "Conecto cada pieza del proyecto, asegurando que diseño, tecnología y estrategia trabajen en armonía hacia un objetivo común.",
-    foto: "/imagenes/integrante3.jpg",
-    github: "https://github.com/juampa926",
+    github: "https://github.com/alvaro-morillo",
   },
-
+    {
+    id: 4,
+    nombre: "Miguel Zambrano",
+    rol: "Fullstack Developer",
+    descripcion:
+      "Conecto cada pieza del proyecto, asegurando que diseño, tecnología y estrategia trabajen en armonía hacia un objetivo común.",
+    github: "https://github.com/mizambran",
+  },
+    {
+    id: 5,
+    nombre: "Patricio Romero",
+    rol: "Fullstack Developer",
+    descripcion:
+      "Conecto cada pieza del proyecto, asegurando que diseño, tecnología y estrategia trabajen en armonía hacia un objetivo común.",
+    github: "https://github.com/pato1404",
+  },
 ];
 
  const Nosotros = () => {
