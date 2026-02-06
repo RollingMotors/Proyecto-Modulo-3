@@ -7,13 +7,13 @@ export const confirmarAccion = async (titulo, texto) => {
     text: texto,
     icon: 'warning',
     showCancelButton: true,
-    confirmButtonColor: '#1a1a1a', // Negro motorista
+    confirmButtonColor: '#b77702', // Negro motorista
     cancelButtonColor: '#d33',     // Rojo alerta
     confirmButtonText: 'Confirmar',
     cancelButtonText: 'Cancelar',
     reverseButtons: true,          // Pone el 'Confirmar' a la derecha
-    background: '#ffffff',
-    color: '#000000'
+    background: '#0c0c0c',
+    color: '#c69b0c'
   });
 
   return result.isConfirmed;
