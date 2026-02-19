@@ -13,10 +13,14 @@ const PaginaProductos = () => {
   const location = useLocation();
   const { filtrarPorCategoria, obtenerCategoriasUnicas } = useProductos();
 
+  // Mapeo: valor enviado por la card → valor con el que están guardados los productos
+  const CATEGORIA_CARD_A_FILTRO = { motocicletas: "Motos", protecciones: "protecciones" };
+
   useEffect(() => {
     const categoriaSeleccionada = location.state?.categoriaSeleccionada;
     if (categoriaSeleccionada) {
-      filtrarPorCategoria(categoriaSeleccionada);
+      const categoriaFiltro = CATEGORIA_CARD_A_FILTRO[categoriaSeleccionada] ?? categoriaSeleccionada;
+      filtrarPorCategoria(categoriaFiltro);
     }
   }, [location, filtrarPorCategoria]);
 

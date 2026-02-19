@@ -9,6 +9,14 @@ import { productosApi } from "../../Services/Api";
 
 const ContextoProducto = createContext();
 
+/** Protecciones incluye productos con categoria "protecciones" o "cascos". */
+function coincideCategoria(catProducto, catFiltro) {
+  if (!catProducto || !catFiltro) return false;
+  const p = String(catProducto).toLowerCase();
+  const f = String(catFiltro).toLowerCase();
+  return p === f || (f === "protecciones" && p === "cascos");
+}
+
 export const useProductos = () => {
   const context = useContext(ContextoProducto);
   if (!context) {
@@ -25,11 +33,14 @@ export const useProductos = () => {
  */
 export const filtrarProductos = (productos, filtros) => {
   return productos.filter((producto) => {
-    // Filtro por categoría
+    // Filtro por categoría (protecciones incluye cascos y demás equipamiento)
     if (filtros.categoria && producto.categoria) {
-      if (producto.categoria.toLowerCase() !== filtros.categoria.toLowerCase()) {
-        return false;
-      }
+      const catProd = producto.categoria.toLowerCase();
+      const catFiltro = filtros.categoria.toLowerCase();
+      const coincide =
+        catProd === catFiltro ||
+        (catFiltro === "protecciones" && catProd === "cascos");
+      if (!coincide) return false;
     }
 
     // Filtro por término de búsqueda
@@ -138,16 +149,21 @@ export const ProveedorProductos = ({ children }) => {
   }, []);
 
   const obtenerCategoriasUnicas = useCallback(() => {
+    const normalizar = (c) => {
+      if (!c || !c.trim()) return "";
+      const lower = c.trim().toLowerCase();
+      return lower === "cascos" ? "protecciones" : c.trim();
+    };
     const categorias = productos
-      .map((p) => p.categoria)
-      .filter((c) => c && c.trim() !== "");
+      .map((p) => normalizar(p.categoria))
+      .filter(Boolean);
     return [...new Set(categorias)];
   }, [productos]);
 
   const obtenerMarcasPorCategoria = useCallback(
     (categoria) => {
       const productosCategoria = categoria
-        ? productos.filter((p) => p.categoria === categoria)
+        ? productos.filter((p) => coincideCategoria(p.categoria, categoria))
         : productos;
       const marcas = productosCategoria
         .map((p) => p.marca)
@@ -160,9 +176,7 @@ export const ProveedorProductos = ({ children }) => {
   const obtenerProductosPorCategoria = useCallback(
     (categoria) => {
       if (!categoria) return productos;
-      return productos.filter(
-        (p) => p.categoria?.toLowerCase() === categoria.toLowerCase()
-      );
+      return productos.filter((p) => coincideCategoria(p.categoria, categoria));
     },
     [productos]
   );
@@ -170,9 +184,13 @@ export const ProveedorProductos = ({ children }) => {
   const obtenerEstadisticas = useCallback(() => {
     const productosPorCategoria = {};
     const productosPorMarca = {};
+    const normalizarCategoria = (c) => {
+      if (!c || !c.trim()) return "Sin categoría";
+      return c.trim().toLowerCase() === "cascos" ? "protecciones" : c.trim();
+    };
 
     productos.forEach((p) => {
-      const categoria = p.categoria || "Sin categoría";
+      const categoria = normalizarCategoria(p.categoria);
       productosPorCategoria[categoria] =
         (productosPorCategoria[categoria] || 0) + 1;
 
