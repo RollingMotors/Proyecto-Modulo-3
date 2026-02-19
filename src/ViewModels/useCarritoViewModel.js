@@ -76,8 +76,10 @@ export const useCarritoViewModel = () => {
   }, []);
 
   const handleCantidadChange = useCallback(
-    (productoId, nuevaCantidad) => {
-      actualizarCantidad(productoId, parseInt(nuevaCantidad) || 1);
+    (itemId, nuevaCantidad) => {
+      const num = parseInt(nuevaCantidad, 10);
+      if (Number.isNaN(num) || num < 0) return;
+      actualizarCantidad(itemId, num);
     },
     [actualizarCantidad],
   );

@@ -77,7 +77,27 @@ export const CarritoProvider = ({ children }) => {
       if (estaAutenticado && productoId) {
         try {
           await carritoApi.agregarItem(productoId, cantidad);
-          await cargarCarritoDesdeApi();
+          setItemsCarrito((prev) => {
+            const idx = prev.findIndex((i) => (i.productoOriginal?.id || i.productoOriginal?._id) === productoId);
+            if (idx !== -1) {
+              const next = [...prev];
+              next[idx] = { ...next[idx], cantidad: next[idx].cantidad + cantidad };
+              return next;
+            }
+            return [
+              ...prev,
+              {
+                id: `opt-${productoId}-${Date.now()}`,
+                nombre: `${productoConId.marca || ""} ${productoConId.modelo || ""}`.trim() || "Producto",
+                precio: parseFloat(productoConId.precio) || 0,
+                cantidad,
+                imagen: productoConId.imagen || "",
+                productoOriginal: productoConId,
+                marca: productoConId.marca || "",
+                modelo: productoConId.modelo || "",
+              },
+            ];
+          });
           return;
         } catch {
           setItemsCarrito((prev) => {
