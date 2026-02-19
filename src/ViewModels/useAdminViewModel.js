@@ -75,13 +75,25 @@ export const useAdminViewModel = () => {
     if (modoFormularioProducto === "editar" && productoEditando) {
       setDatosFormularioProducto({
         nombre: productoEditando.nombre || "",
-        precio: productoEditando.precio || "",
+        precio:
+          productoEditando.precio !== null &&
+          productoEditando.precio !== undefined
+            ? String(productoEditando.precio)
+            : "",
         descripcion: productoEditando.descripcion || "",
         categoria: productoEditando.categoria || "",
         marca: productoEditando.marca || "",
         modelo: productoEditando.modelo || "",
-        año: productoEditando.año || "",
-        kilometros: productoEditando.kilometros || "",
+        año:
+          productoEditando.año !== null &&
+          productoEditando.año !== undefined
+            ? String(productoEditando.año)
+            : "",
+        kilometros:
+          productoEditando.kilometros !== null &&
+          productoEditando.kilometros !== undefined
+            ? String(productoEditando.kilometros)
+            : "",
         ubicacion: productoEditando.ubicacion || "",
         imagen: productoEditando.imagen || "",
         destacado: productoEditando.destacado || false,
