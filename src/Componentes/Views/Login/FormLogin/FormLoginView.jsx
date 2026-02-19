@@ -28,6 +28,7 @@ const FormLoginView = ({
 
   // Callbacks
   onClose,
+  onRecuperarPassword,
 }) => {
   const { t } = useTranslation();
 
@@ -125,7 +126,10 @@ const FormLoginView = ({
         <a
           href="#"
           className="enlace-dorado text-decoration-none"
-          onClick={(e) => e.preventDefault()}
+          onClick={(e) => {
+            e.preventDefault();
+            onRecuperarPassword?.(e);
+          }}
         >
           {t("forgotPassword")}
         </a>

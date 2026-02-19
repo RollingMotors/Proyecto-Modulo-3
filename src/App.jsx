@@ -15,6 +15,7 @@ import Categorias from "./Componentes/Views/Productos/ComponenteProducto/Categor
 import DetalleProducto from "./Componentes/Views/Productos/ComponenteProducto/PaginaProductos/Detalle-Producto/DetalleProducto";
 import CarritoContainer from "./Componentes/Views/Productos/componenteCarrito/CarritoContainer";
 import Footer from "./Componentes/Shared/Footer/Footer";
+import RecuperarPassword from "./Componentes/Views/Login/RecuperarPassword";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
@@ -45,6 +46,7 @@ function App() {
               <Route path="/productos-todos" element={<div className="mt-5 py-5"><Categorias /></div>} />
               <Route path="/detalle-producto" element={<DetalleProducto />} />
                   <Route path="/carrito" element={<CarritoContainer />} />
+                  <Route path="/recuperar-password" element={ <RecuperarPassword />} />
               <Route path="*" element={<Pagina404 />} />
               <Route
                 path="/admin"
